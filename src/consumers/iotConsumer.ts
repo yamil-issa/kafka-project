@@ -1,4 +1,4 @@
-import { Kafka } from 'kafkajs';
+import { Kafka, EachMessagePayload } from 'kafkajs';
 import { Db, MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
 
@@ -11,14 +11,23 @@ const dbName = 'iot';
 let db: Db;
 
 const connectDB = async () => {
-  await client.connect();
-  console.log('Connected to MongoDB');
-  db = client.db(dbName);
+  try {
+    await client.connect();
+    console.log('Connected to MongoDB');
+    db = client.db(dbName);
+  } catch (error) {
+    console.error('Failed to connect to MongoDB', error);
+  }
 };
 
 const insertData = async (data: any) => {
-  const collection = db.collection('iot-data');
-  await collection.insertOne(data);
+  try {
+    const collection = db.collection('iot-data');
+    await collection.insertOne(data);
+    console.log('Data inserted:', data);
+  } catch (error) {
+    console.error('Failed to insert data', error);
+  }
 };
 
 const kafka = new Kafka({
@@ -34,11 +43,14 @@ const run = async () => {
   await consumer.subscribe({ topic: 'iot-data', fromBeginning: true });
 
   await consumer.run({
-    eachMessage: async ({ topic, partition, message }) => {
-      const data = message.value ? JSON.parse(message.value.toString()) : null;
-      console.log('Received data:', data);
-
-      await insertData(data);
+    eachMessage: async ({ topic, partition, message }: EachMessagePayload) => {
+      try {
+        const data = message.value ? JSON.parse(message.value.toString()) : null;
+        console.log('Received data:', data);
+        if (data) await insertData(data);
+      } catch (error) {
+        console.error('Error processing message', error);
+      }
     },
   });
 };
