@@ -1,0 +1,36 @@
+{
+  "name": "kafka",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start:producer:iot": "node dist/producers/iotProducer.js",
+    "start:producer:weblog": "node dist/producers/webLogProducer.js",
+    "start:consumer:iot": "node dist/consumers/iotConsumer.js",
+    "start:consumer:weblog": "node dist/consumers/webLogConsumer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yamil-issa/kafka-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yamil-issa/kafka-project/issues"
+  },
+  "homepage": "https://github.com/yamil-issa/kafka-project#readme",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "kafkajs": "^2.2.4",
+    "mongodb": "^6.8.0"
+  }
+}
