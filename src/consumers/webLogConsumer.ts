@@ -16,7 +16,6 @@ const run = async () => {
       const log = message.value ? JSON.parse(message.value.toString()) : null;
       console.log('Received web log:', log);
 
-      // Process log (e.g., store in a database, analyze, etc.)
     },
   });
 };

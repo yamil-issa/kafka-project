@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/yamil-issa/kafka-project#readme",
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/mongodb": "^4.0.7",
     "@types/node": "^20.14.10",
     "typescript": "^5.5.3"
   },
@@ -30,6 +32,7 @@
     "@faker-js/faker": "^8.4.1",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "kafkajs": "^2.2.4",
     "mongodb": "^6.8.0"
   }

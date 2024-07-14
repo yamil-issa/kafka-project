@@ -1,5 +1,8 @@
 # Projet : Plateforme de Streaming de Données en Temps Réel avec Apache Kafka, Elasticsearch et Grafana
 
+## Membres du groupe: 
+- Yamil Issa
+
 ## Description
 
 Ce projet met en œuvre une plateforme de streaming de données en temps réel en utilisant Apache Kafka.
